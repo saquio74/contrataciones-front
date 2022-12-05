@@ -1,0 +1,14 @@
+{
+    "extends": "@quasar/app-vite/tsconfig-preset",
+    "compilerOptions": {
+        "module": "amd",
+        "target": "esnext",
+        "baseUrl": ".",
+        "paths": {
+            "http://*": ["../../../.deno/deps/http/*"],
+            "https://*": ["../../../.deno/deps/https/*"],
+            "*.ts": ["*"],
+            "@/*": ["./src"]
+        }
+    }
+}
