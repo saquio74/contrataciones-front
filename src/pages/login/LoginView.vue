@@ -44,6 +44,8 @@
 import { reactive, ref } from 'vue'
 import type login from '../../interfaces/login'
 import type { validation } from '../../interfaces/validations'
+import userService from 'src/boot/services/userService.ts'
+import { User } from 'src/interfaces/user/user.ts'
 
 const loginData = reactive<login>({
     email: '',
@@ -58,11 +60,13 @@ const isPwd = ref<boolean>(true)
 const emailRules = [(val: string) => (val && val.length > 0) || 'El campo email es requerido']
 const passwordRules = [(val: string) => (val && val.length > 0) || 'El campo contraseña es requerido']
 
-const enviarLogin = () => {
+const enviarLogin = async () => {
     emailRef.value?.validate()
     passwordRef.value?.validate()
 
     if (emailRef.value?.hasErrors || passwordRef.value?.hasErrors) return
+    const user: User = await userService.basePost(loginData, 'login')
+    console.log(user)
 }
 </script>
 <style scoped>

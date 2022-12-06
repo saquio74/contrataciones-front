@@ -27,7 +27,6 @@ export default route(function (/* { store, ssrContext } */) {
     })
 
     Router.beforeEach((to, from) => {
-        console.log(to, from)
         return true
     })
     return Router

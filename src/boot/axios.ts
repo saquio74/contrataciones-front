@@ -14,16 +14,16 @@ declare module '@vue/runtime-core' {
 
 class Api {
     public api: AxiosInstance
-    constructor(baseUrl: string, slug: string) {
+    constructor(slug: string) {
         this.api = axios.create({
-            baseURL: `${baseUrl}${slug}`,
+            baseURL: `${process.env.BASE_URL_API}/${slug}`,
             timeout: 15000
         })
         const token = localStorage.getItem('token-laravel')
         if (token) this.api.defaults.headers.Authorization = `bearer ${token}`
         this.api.interceptors.response.use(
-            (res) => res.data,
-            (error) => Promise.reject(error.response.data ?? error.request ?? error.message)
+            (res) => res?.data ?? res,
+            (error) => Promise.reject(error.response?.data ?? error.request ?? error.message ?? error)
         )
     }
 }

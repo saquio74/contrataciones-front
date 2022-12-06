@@ -1,7 +1,7 @@
 {
     "extends": "@quasar/app-vite/tsconfig-preset",
     "compilerOptions": {
-        "module": "amd",
+        "module": "ESNext",
         "target": "esnext",
         "baseUrl": ".",
         "paths": {

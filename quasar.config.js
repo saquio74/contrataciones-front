@@ -57,7 +57,7 @@ module.exports = configure(function (/* ctx */) {
                 '@': path.join(__dirname, './src')
             },
 
-            vueRouterMode: 'hash' // available values: 'hash', 'history'
+            vueRouterMode: 'hash', // available values: 'hash', 'history'
             // vueRouterBase,
             // vueDevtools,
             // vueOptionsAPI: false,
@@ -79,6 +79,9 @@ module.exports = configure(function (/* ctx */) {
             // vitePlugins: [
             //   [ 'package-name', { ..options.. } ]
             // ]
+            env: {
+                BASE_URL_API: 'http://127.0.0.1:8000/api'
+            }
         },
 
         // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
