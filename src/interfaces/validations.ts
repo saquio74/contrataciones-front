@@ -1,4 +1,4 @@
-export interface validation {
+export default interface Validation {
     validate(): boolean
     hasErrors: boolean
 }

@@ -1,5 +1,5 @@
+import { Notify } from 'quasar'
 import axios, { AxiosInstance } from 'axios'
-
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
         $axios: AxiosInstance
@@ -20,10 +20,14 @@ class Api {
             timeout: 15000
         })
         const token = localStorage.getItem('token-laravel')
-        if (token) this.api.defaults.headers.Authorization = `bearer ${token}`
+        if (token) this.api.defaults.headers.Authorization = `Bearer ${token}`
         this.api.interceptors.response.use(
             (res) => res?.data ?? res,
-            (error) => Promise.reject(error.response?.data ?? error.request ?? error.message ?? error)
+            (error) => {
+                const errorResponse = error.response?.data ?? error.request ?? error.message ?? error
+                Notify.create(errorResponse ?? 'Ocurrio un error')
+                return Promise.reject(errorResponse)
+            }
         )
     }
 }

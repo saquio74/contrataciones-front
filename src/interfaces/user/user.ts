@@ -1,6 +1,6 @@
 import { Roles } from '../rolesPermisos/roles'
 
-export interface User {
+export default interface User {
     id: number
     name: string
     email: string

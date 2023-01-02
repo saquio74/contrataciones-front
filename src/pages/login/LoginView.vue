@@ -42,31 +42,35 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type login from '../../interfaces/login'
-import type { validation } from '../../interfaces/validations'
-import userService from 'src/boot/services/userService.ts'
-import { User } from 'src/interfaces/user/user.ts'
+import type { Validation, Login } from '../../interfaces/index'
+import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import { useRouter } from 'vue-router'
 
-const loginData = reactive<login>({
+const router = useRouter()
+
+const loginData = reactive<Login>({
     email: '',
     password: ''
 })
 
-const emailRef = ref<validation>()
-const passwordRef = ref<validation>()
+const emailRef = ref<Validation>()
+const passwordRef = ref<Validation>()
 
 const isPwd = ref<boolean>(true)
 
 const emailRules = [(val: string) => (val && val.length > 0) || 'El campo email es requerido']
 const passwordRules = [(val: string) => (val && val.length > 0) || 'El campo contraseña es requerido']
+const userStore = useUserStore()
+const { login } = userStore
 
 const enviarLogin = async () => {
     emailRef.value?.validate()
     passwordRef.value?.validate()
-
     if (emailRef.value?.hasErrors || passwordRef.value?.hasErrors) return
-    const user: User = await userService.basePost(loginData, 'login')
-    console.log(user)
+
+    await login(loginData)
+
+    router.push({ name: 'home' })
 }
 </script>
 <style scoped>
