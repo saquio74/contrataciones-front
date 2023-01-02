@@ -1,6 +1,10 @@
 <template>
-    <q-card-section class="column q-mt-lg q-mx-lg">
-        <q-input :model-value="agente.legajo" />
+    <q-card-section class="column q-mt-lg q-mx-lg text-green">
+        <q-input
+            v-model="agente.legajo"
+            :type="'number'"
+            label="Legajo"
+        />
     </q-card-section>
 </template>
 <script setup lang="ts">

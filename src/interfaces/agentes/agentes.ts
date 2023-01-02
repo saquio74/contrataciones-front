@@ -31,6 +31,8 @@ export interface AgentesFilter extends BaseFilter {
     hospital?: string
     servicio?: string
     sector?: string
+    legajo?: string
+    dni?: string
     hospitalId?: number
     servicioId?: number
     sectorId?: number

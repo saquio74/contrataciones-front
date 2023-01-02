@@ -14,6 +14,28 @@
                 </template>
             </q-input>
             <q-input
+                v-model="filtro.legajo"
+                dense
+                debounce="300"
+                placeholder="Legajo"
+                @update:model-value="updatePagination()"
+            >
+                <template #append>
+                    <q-icon name="search" />
+                </template>
+            </q-input>
+            <q-input
+                v-model="filtro.dni"
+                dense
+                debounce="300"
+                placeholder="Documento"
+                @update:model-value="updatePagination()"
+            >
+                <template #append>
+                    <q-icon name="search" />
+                </template>
+            </q-input>
+            <q-input
                 v-model="filtro.hospital"
                 dense
                 debounce="300"
