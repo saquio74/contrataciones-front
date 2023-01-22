@@ -7,6 +7,7 @@ import type { Sector, SectorFilter } from './sector/sector'
 import type { Hospital, HospitalFilter } from './hospital/hospital'
 import type { Inciso, Ageninc } from './incisos/incisos'
 import type { BasePagination } from './pagination/basePagination'
+import type { SelecOption } from './filters/baseFilter'
 
 export {
     Login,
@@ -22,5 +23,6 @@ export {
     Hospital,
     HospitalFilter,
     Inciso,
-    Ageninc
+    Ageninc,
+    SelecOption
 }

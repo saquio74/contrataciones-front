@@ -3,3 +3,7 @@ export interface BaseFilter {
     page?: number
     rowsPerPage?: number
 }
+export interface SelecOption<T> {
+    label: string
+    value: T
+}

@@ -10,6 +10,8 @@ export interface Agente {
     dni?: number
     nombre?: string
     incisos?: number[]
+    horarios?: string
+    telefono?: string
     hospital?: Hospital
     servicio?: Servicio
     sector?: Sector

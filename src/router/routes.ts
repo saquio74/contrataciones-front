@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import agentesRoutes from '../pages/agentes/routesAgentes'
 import routesLogin from '../pages/login/routesLogin'
+import routesLiquidar from '../pages/liquidar/routesLiquidar'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
@@ -8,7 +9,8 @@ const routes: RouteRecordRaw[] = [
         children: [
             { path: '', name: 'home', component: () => import('pages/IndexPage.vue') },
             ...agentesRoutes,
-            ...routesLogin
+            ...routesLogin,
+            ...routesLiquidar
         ]
     },
 

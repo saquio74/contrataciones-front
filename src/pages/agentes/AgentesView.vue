@@ -83,7 +83,50 @@
             :dense="$q.screen.lt.md"
             :pagination="{ rowsPerPage: 10, page: currentPage, rowsNumber: total }"
             @request="(data) => updatePagination(data.pagination)"
-        />
+        >
+            <template #header="props">
+                <q-tr :props="props">
+                    <q-th auto-width />
+                    <q-th
+                        v-for="col in props.cols"
+                        :key="col.name"
+                        :props="props"
+                    >
+                        {{ col.label }}
+                    </q-th>
+                </q-tr>
+            </template>
+            <template #body="props">
+                <q-tr :props="props">
+                    <q-td auto-width>
+                        <q-btn
+                            size="sm"
+                            color="red"
+                            round
+                            class="q-mx-sm"
+                            dense
+                            :icon="'remove'"
+                            @click="deleteAgente(props.row.id)"
+                        />
+                        <q-btn
+                            size="sm"
+                            color="warning"
+                            round
+                            dense
+                            icon="create"
+                            @click="updateAgente(props.row)"
+                        />
+                    </q-td>
+                    <q-td
+                        v-for="col in props.cols"
+                        :key="col.name"
+                        :props="props"
+                    >
+                        {{ col.value }}
+                    </q-td>
+                </q-tr>
+            </template>
+        </q-table>
         <div
             v-if="(!agentes || !agentes.length) && !loading"
             class="row q-mt-lg q-mx-lg text-blue text-center"
@@ -104,7 +147,21 @@
             :dialog="dialog"
             @close-modal="() => (dialog = false)"
         >
-            <NuevoAgente />
+            <NuevoAgente
+                :disable="disableButton"
+                @submit="guardarAgente"
+            />
+        </BaseModal>
+        <BaseModal
+            :titulo="'Actualizar Agente'"
+            :dialog="dialogEdit"
+            @close-modal="() => (dialogEdit = false)"
+        >
+            <NuevoAgente
+                :agente="agente"
+                @submit="actualizarAgente"
+                @close-form="(val: boolean) => (dialogEdit = val)"
+            />
         </BaseModal>
     </q-page>
 </template>
@@ -113,9 +170,10 @@ import { useAgenteStore } from 'src/stores/agentesStore/agenteStore.ts'
 import { storeToRefs } from 'pinia'
 import { onMounted, reactive, ref } from 'vue'
 import { Agente, AgentesFilter } from 'src/interfaces.ts'
-import { date } from 'quasar'
+import { date, Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears, QTable, QTd, QTh, QTr } from 'quasar'
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoAgente from './partials/NuevoAgente.vue'
+import agenteService from 'src/boot/services/agenteService.ts'
 const columns = [
     { name: 'Legajo', label: 'Legajo', field: 'legajo' },
     { name: 'dni', field: 'dni', label: 'DNI' },
@@ -154,7 +212,10 @@ const columns = [
 ]
 
 const dialog = ref(false)
+const dialogEdit = ref(false)
+const agente = ref<Agente>({})
 const loading = ref<boolean>(false)
+const disableButton = ref<boolean>(false)
 const agenteStore = useAgenteStore()
 const { agentes, currentPage, total } = storeToRefs(agenteStore)
 const filtro = reactive<AgentesFilter>({ perPage: 10, page: 1 })
@@ -174,9 +235,36 @@ const openNewModal = () => {
     dialog.value = true
 }
 
+const deleteAgente = async (agenteId: number) => {
+    await agenteService.baseDelete(agenteId.toString())
+    await agenteStore.getAgentes(filtro)
+}
+
 onMounted(async () => {
     await agenteStore.getAgentes(filtro)
 })
+const updateAgente = async (agenteEdit: Agente) => {
+    dialogEdit.value = true
+    agente.value = { ...agenteEdit }
+}
+const guardarAgente = async (agente: Agente) => {
+    disableButton.value = true
+    await agenteService.basePost(agente)
+    filtro.page = 1
+    await agenteStore.getAgentes(filtro)
+    Notify.create('Se guardo el agente correctamente')
+    disableButton.value = false
+    dialog.value = false
+}
+const actualizarAgente = async (agente: Agente) => {
+    disableButton.value = true
+    await agenteService.basePut(agente)
+    filtro.page = 1
+    await agenteStore.getAgentes(filtro)
+    Notify.create('Se actualizo el agente correctamente')
+    disableButton.value = false
+    dialogEdit.value = false
+}
 </script>
 <style lang="scss">
 .my-sticky-column-table {

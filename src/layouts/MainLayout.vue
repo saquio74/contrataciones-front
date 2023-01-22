@@ -56,10 +56,10 @@ const essentialLinks: EssentialLinkProps[] = [
         link: 'listado-de-agentes'
     },
     {
-        title: 'Github',
-        caption: 'github.com/quasarframework',
-        icon: 'code',
-        link: 'https://github.com/quasarframework'
+        title: 'Liquidar',
+        caption: 'Liquidar agentes',
+        icon: 'create',
+        link: 'liquidar-agentes'
     },
     {
         title: 'Discord Chat Channel',
