@@ -19,7 +19,14 @@
         >
             <template #no-option>
                 <q-item>
-                    <q-item-section class="text-grey"> Sin resultados </q-item-section>
+                    <q-item-section class="text-grey">
+                        <p v-if="!loading">Sin resultados</p>
+                        <q-spinner-gears
+                            v-if="loading"
+                            size="50px"
+                            color="primary"
+                        />
+                    </q-item-section>
                 </q-item>
             </template>
         </q-select>
@@ -55,8 +62,19 @@ const props = defineProps({
         default: () => {
             return null
         }
+    },
+    paginado: {
+        type: Boolean,
+        default: true
+    },
+    currentFiltro: {
+        type: Object,
+        default: () => {
+            return {}
+        }
     }
 })
+const loading = ref(false)
 const emit = defineEmits(['selected'])
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const data = ref<any>([])
@@ -65,14 +83,24 @@ const selected = ref<any>(null)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const controller = new baseController<any, any, any, BasePagination<any>>(props.endpoint)
 const getData = async (search = '') => {
-    const filtro = { [props.opcion]: search }
-    const info = await controller.baseGetQuery(filtro, '')
-    data.value = info.data.map((info) => {
-        return { label: info[props.opcion], value: info.id }
-    })
+    data.value = []
+    try {
+        loading.value = true
+        const filtro = { [props.opcion]: search, ...props.currentFiltro }
+        let info = []
+
+        const res = await controller.baseGetQuery(filtro, '')
+        info = res.data ?? res
+
+        data.value = info.map((info) => {
+            return { label: info[props.opcion], value: info.id }
+        })
+    } catch {
+    } finally {
+        loading.value = false
+    }
 }
 onMounted(() => {
-    getData()
     if (props.preLoad && props.preLoad.label) selected.value = props.preLoad
     if (props.preLoad?.length > 0) selected.value = props.preLoad
 })
