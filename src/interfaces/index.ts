@@ -8,7 +8,7 @@ import type { Hospital, HospitalFilter } from './hospital/hospital'
 import type { Inciso, Ageninc } from './incisos/incisos'
 import type { BasePagination } from './pagination/basePagination'
 import type { SelecOption } from './filters/baseFilter'
-import type { Agenfac } from './agenfac/agenfac'
+import type { Agenfac, AgenfacFilter } from './agenfac/agenfac'
 
 export {
     Login,
@@ -26,5 +26,6 @@ export {
     Inciso,
     Ageninc,
     SelecOption,
-    Agenfac
+    Agenfac,
+    AgenfacFilter
 }

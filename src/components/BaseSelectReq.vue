@@ -14,8 +14,8 @@
             :hint="`Seleccione ${props.opcion}`"
             style="width: 250px; padding-bottom: 32px"
             @filter="filterFn"
-            @update:model-value="selectOption()"
-            @input-value="() => selectOption()"
+            @update:model-value="selectOption"
+            @input-value="() => selectOption"
         >
             <template #no-option>
                 <q-item>
@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import baseController from 'src/boot/baseController.ts'
-import type { BasePagination } from 'src/interfaces.ts'
+import type { BasePagination, SelecOption } from 'src/interfaces.ts'
 const props = defineProps({
     opcion: {
         type: String,
@@ -93,7 +93,8 @@ const getData = async (search = '') => {
         info = res.data ?? res
 
         data.value = info.map((info) => {
-            return { label: info[props.opcion], value: info.id }
+            if (info[props.opcion]) return { label: info[props.opcion], value: info.id }
+            return info
         })
     } catch {
     } finally {
@@ -109,8 +110,5 @@ const filterFn = (val: string, update: (func: () => void) => void) => {
         getData(val)
     })
 }
-const selectOption = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 0))
-    emit('selected', selected.value)
-}
+const selectOption = async (val: SelecOption<number | string>) => emit('selected', val)
 </script>

@@ -1,3 +1,4 @@
+import { Agenfac } from '../agenfac/agenfac'
 import { BaseFilter } from '../filters/baseFilter'
 import { Hospital } from '../hospital/hospital'
 import { Ageninc } from '../incisos/incisos'
@@ -25,6 +26,7 @@ export interface Agente {
     updated_by?: number
     deleted_by?: number
     ageninc?: Ageninc[]
+    liquidacion_actual?: Agenfac[]
 }
 
 export interface AgentesFilter extends BaseFilter {

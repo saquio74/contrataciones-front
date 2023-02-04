@@ -6,7 +6,8 @@
             inline-label
             outside-arrows
             mobile-arrows
-            class="bg-primary text-white shadow-2"
+            :class="color"
+            class="text-white shadow-2"
         >
             <q-tab
                 name="inciso"
@@ -59,8 +60,10 @@ import { reactive } from 'vue'
 
 export interface Props {
     ageninc?: Ageninc
+    color?: string
+    hospitalId: number
 }
-const props = withDefaults(defineProps<Props>(), { ageninc: undefined })
+const props = withDefaults(defineProps<Props>(), { ageninc: undefined, color: 'bg-primary' })
 const options = [0, 20, 30]
 
 const emit = defineEmits(['liquidar'])
@@ -74,19 +77,25 @@ const agenfac = reactive<Agenfac>({
     subtot: 0,
     bonvalor: 0,
     total: 0,
-    bonificacion: props.ageninc?.inciso?.inciso === '4.1' ? 30 : props.ageninc?.inciso?.inciso !== '13' ? 20 : 0
+    hospital: props.hospitalId,
+    bonificacion: props.ageninc?.inciso?.inciso === '4.1' ? 30 : props.ageninc?.inciso?.inciso !== '13' ? 20 : 0,
+    created_at: null,
+    created_by: null
 })
 const updateAgenfac = () => {
     if (!props.ageninc) return
-    const date = new Date(new Date().getMonth() - 1)
+    const date = new Date()
+    date.setMonth(date.getMonth() - 1)
+
     agenfac.horas = parseInt(agenfac.horas.toString())
     agenfac.anio = date.getMonth() === 11 ? new Date().getFullYear() - 1 : new Date().getFullYear()
     agenfac.periodo = date.toLocaleDateString('es-ar', { month: 'long' })
     agenfac.subtot = agenfac.horas * props.ageninc?.inciso?.valor
+    agenfac.valor = props.ageninc?.inciso?.valor
     agenfac.bonvalor = (agenfac.subtot * agenfac.bonificacion) / 100
     agenfac.total = agenfac.subtot + agenfac.bonvalor
 }
 const liquidar = () => {
-    emit('liquidar', agenfac)
+    if (agenfac.horas > 0) emit('liquidar', agenfac)
 }
 </script>

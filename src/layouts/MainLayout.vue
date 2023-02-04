@@ -62,6 +62,12 @@ const essentialLinks: EssentialLinkProps[] = [
         link: 'liquidar-agentes'
     },
     {
+        title: 'Listado de liquidados',
+        caption: 'Liquidar agentes',
+        icon: 'person',
+        link: 'listado-liquidados'
+    },
+    {
         title: 'Discord Chat Channel',
         caption: 'chat.quasar.dev',
         icon: 'chat',
