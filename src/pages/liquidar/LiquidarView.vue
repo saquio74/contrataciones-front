@@ -21,6 +21,10 @@
                         name="editar"
                         label="Editar"
                     />
+                    <q-tab
+                        name="archivos"
+                        label="Generar archivos"
+                    />
                 </q-tabs>
             </q-toolbar>
 
@@ -36,6 +40,9 @@
                 <q-tab-panel name="editar">
                     <EditarLiquidacion />
                 </q-tab-panel>
+                <q-tab-panel name="archivos">
+                    <GenerarExcel />
+                </q-tab-panel>
             </q-tab-panels>
         </q-card>
     </q-page>
@@ -44,5 +51,6 @@
 import { ref } from 'vue'
 import LiquidarPartials from './partials/LiquidarPartials.vue'
 import EditarLiquidacion from './partials/EditarLiquidacion.vue'
+import GenerarExcel from './partials/GenerarExcel.vue'
 const tab = ref('liquidar')
 </script>

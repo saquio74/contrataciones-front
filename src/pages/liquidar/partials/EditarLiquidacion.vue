@@ -1,23 +1,7 @@
 <template>
     <div>
-        <div class="row justify-around q-mt-lg q-mx-lg">
-            <BaseSelectReq
-                endpoint="hospitales"
-                opcion="hospital"
-                @selected="selectedHospital"
-            />
-            <BaseSelectReq
-                endpoint="agenfac/getperiodos"
-                opcion="periodo"
-                :current-filtro="{ hospital_id: filtro.hospital_id, columna: 'periodo' }"
-                @selected="selectedPeriodo"
-            />
-            <BaseSelectReq
-                endpoint="agenfac/getperiodos"
-                opcion="anio"
-                :current-filtro="{ hospital_id: filtro.hospital_id, columna: 'anio', periodo: filtro.periodo }"
-                @selected="selectedAnio"
-            />
+        <div>
+            <BuscarInfoLiquidacion @submit="updateFilter" />
         </div>
         <q-btn
             color="deep-orange"
@@ -153,14 +137,14 @@
 </template>
 <script lang="ts" setup>
 import agenfacService from 'src/boot/services/agenfacService.ts'
-import BaseSelectReq from 'src/components/BaseSelectReq.vue'
+import BuscarInfoLiquidacion from './BuscarInfoLiquidacion.vue'
 import EditarHoras from './EditarHoras.vue'
-import { Agenfac, AgenfacFilter, SelecOption } from 'src/interfaces.ts'
+import { Agenfac, AgenfacFilter } from 'src/interfaces.ts'
 import BaseModal from 'src/components/BaseModal.vue'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 const dialogEdit = ref<boolean>(false)
-const filtro = reactive<AgenfacFilter>({})
+const filtro = ref<AgenfacFilter>({})
 const agentesLiquidados = ref<Agenfac[]>([])
 const currentAgenfac = ref<Agenfac>({
     inc: 0,
@@ -176,26 +160,11 @@ const currentAgenfac = ref<Agenfac>({
     created_at: null,
     created_by: null
 })
+const updateFilter = (filtroFuncion: AgenfacFilter) => {
+    console.log(filtroFuncion)
+    filtro.value = { ...filtroFuncion }
+}
 
-const selectedHospital = async (hosp: SelecOption<number>) => {
-    if (!hosp) return
-    filtro.hospital_id = undefined
-    await new Promise((resolve) => setTimeout(resolve, 0))
-    filtro.hospital_id = hosp.value
-}
-const selectedPeriodo = async (periodo: string) => {
-    if (!periodo) return
-    filtro.periodo = undefined
-    await new Promise((resolve) => setTimeout(resolve, 0))
-    filtro.periodo = periodo
-}
-const selectedAnio = async (anio: number) => {
-    if (!anio) return
-    filtro.anio = undefined
-    await new Promise((resolve) => setTimeout(resolve, 0))
-    console.log(anio)
-    filtro.anio = anio
-}
 const verificarServicio = (agente: Agenfac, index: number) => {
     return (
         agente?.servicio !==
@@ -209,7 +178,7 @@ const verificarSector = (agente: Agenfac, index: number) => {
 }
 
 const buscarLiquidacion = async () => {
-    agentesLiquidados.value = await agenfacService.baseGetQueryWithoutPagination(filtro, 'getliquidados')
+    agentesLiquidados.value = await agenfacService.baseGetQueryWithoutPagination(filtro.value, 'getliquidados')
 }
 
 const deleteAgente = async (agenfacId: number) => {

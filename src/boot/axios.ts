@@ -24,8 +24,11 @@ class Api {
         this.api.interceptors.response.use(
             (res) => res?.data ?? res,
             (error) => {
-                const errorResponse = error.response?.data ?? error.request ?? error.message ?? error
-                Notify.create(errorResponse ?? 'Ocurrio un error')
+                const errorResponse =
+                    error.response?.data?.message ?? error.response?.data ?? error.request ?? error.message ?? error
+                Notify.create(
+                    typeof errorResponse === 'string' && errorResponse.length > 0 ? errorResponse : 'Ocurrio un error'
+                )
                 return Promise.reject(errorResponse)
             }
         )
