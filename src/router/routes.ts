@@ -3,6 +3,8 @@ import agentesRoutes from '../pages/agentes/routesAgentes'
 import routesLogin from '../pages/login/routesLogin'
 import routesLiquidar from '../pages/liquidar/routesLiquidar'
 import routesLiquidados from '../pages/listado/routesLiquidados'
+import routesComplementaria from 'src/pages/complementaria/routesComplementaria'
+import routesRoles from 'src/pages/roles/routesRoles'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
@@ -12,7 +14,9 @@ const routes: RouteRecordRaw[] = [
             ...agentesRoutes,
             ...routesLogin,
             ...routesLiquidar,
-            ...routesLiquidados
+            ...routesLiquidados,
+            ...routesComplementaria,
+            ...routesRoles
         ]
     },
 

@@ -44,11 +44,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import EssentialLink, { EssentialLinkProps } from '../components/EssentialLink.vue'
 import { useQuasar } from 'quasar'
-
-const essentialLinks: EssentialLinkProps[] = [
+import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import { storeToRefs } from 'pinia'
+const userStore = useUserStore()
+const { user } = storeToRefs(userStore)
+console.log(user.value?.roles.special === 'all-access')
+const essentialLinks = computed<EssentialLinkProps[]>(() => [
     {
         title: 'Agentes',
         caption: 'Listado de agentes',
@@ -66,6 +70,19 @@ const essentialLinks: EssentialLinkProps[] = [
         caption: 'Liquidar agentes',
         icon: 'person',
         link: 'listado-liquidados'
+    },
+    {
+        title: 'Complementarias',
+        caption: 'Liquidar complementarias',
+        icon: 'create',
+        link: 'complementarias-view'
+    },
+    {
+        title: 'Roles y permisos',
+        caption: 'Editar roles y permisos',
+        icon: 'record_voice_over',
+        link: 'roles-view',
+        show: user.value?.roles.special === 'all-access'
     },
     {
         title: 'Discord Chat Channel',
@@ -97,7 +114,7 @@ const essentialLinks: EssentialLinkProps[] = [
         icon: 'favorite',
         link: 'https://awesome.quasar.dev'
     }
-]
+])
 const quasar = useQuasar()
 const darkMode = ref<boolean>(localStorage.getItem('dark-mode') === 'true')
 

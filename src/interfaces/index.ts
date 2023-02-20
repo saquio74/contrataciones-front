@@ -9,6 +9,7 @@ import type { Inciso, Ageninc } from './incisos/incisos'
 import type { BasePagination } from './pagination/basePagination'
 import type { SelecOption } from './filters/baseFilter'
 import type { Agenfac, AgenfacFilter } from './agenfac/agenfac'
+import type { Complementaria, ComplementariaFilter } from './agenfac/complementaria'
 
 export {
     Login,
@@ -27,5 +28,7 @@ export {
     Ageninc,
     SelecOption,
     Agenfac,
-    AgenfacFilter
+    AgenfacFilter,
+    Complementaria,
+    ComplementariaFilter
 }

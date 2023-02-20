@@ -41,6 +41,10 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    multipleOption: {
+        type: Array<string>,
+        default: () => []
+    },
     endpoint: {
         type: String,
         default: ''
@@ -72,6 +76,10 @@ const props = defineProps({
         default: () => {
             return {}
         }
+    },
+    dataReturn: {
+        type: String,
+        default: () => 'id'
     }
 })
 const loading = ref(false)
@@ -93,7 +101,14 @@ const getData = async (search = '') => {
         info = res.data ?? res
 
         data.value = info.map((info) => {
-            if (info[props.opcion]) return { label: info[props.opcion], value: info.id }
+            if (info[props.opcion])
+                return {
+                    label:
+                        props.multipleOption.length > 0
+                            ? props.multipleOption.map((data: string) => info[data]).join(' ')
+                            : info[props.opcion],
+                    value: props.dataReturn.length > 0 ? info[props.dataReturn] : info
+                }
             return info
         })
     } catch {
@@ -101,6 +116,7 @@ const getData = async (search = '') => {
         loading.value = false
     }
 }
+
 onMounted(() => {
     if (props.preLoad && props.preLoad.label) selected.value = props.preLoad
     if (props.preLoad?.length > 0) selected.value = props.preLoad

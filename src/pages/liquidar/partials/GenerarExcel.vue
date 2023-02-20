@@ -18,6 +18,17 @@
             :loading="loading"
             @click="buscarPDF"
         />
+        <q-btn
+            v-if="url"
+            class="q-mx-lg"
+            color="info"
+            glossy
+            :disable="!filtro.hospital_id || !filtro.periodo || !filtro.anio"
+            label="Descargar PDF"
+            :loading="loading"
+            :href="url"
+            @click="buscarPDF"
+        />
     </div>
 </template>
 <script lang="ts" setup>
@@ -28,6 +39,7 @@ import BuscarInfoLiquidacion from './BuscarInfoLiquidacion.vue'
 
 const filtro = ref<AgenfacFilter>({})
 const loading = ref<boolean>(false)
+const url = ref<string>('')
 const buscarLiquidacion = async () => {
     loading.value = true
     try {
@@ -49,9 +61,12 @@ const buscarPDF = async () => {
         const blob = new Blob([data], {
             type: 'application/pdf'
         })
-        const url = window.URL.createObjectURL(blob)
-        window.open(url, '_blank')
+        const direccion = window.URL.createObjectURL(blob)
+        url.value = direccion
+        console.log(url)
+        window.open(direccion, '_blank')
     } catch (error) {
+        console.log(error)
     } finally {
         loading.value = false
     }

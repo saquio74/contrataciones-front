@@ -1,5 +1,6 @@
 <template>
     <q-item
+        v-if="show"
         clickable
         tag="a"
         target="_blank"
@@ -28,6 +29,7 @@ export interface EssentialLinkProps {
     caption?: string
     link?: string
     icon?: string
+    show?: boolean
 }
 
 const routerBase = useRouter()
@@ -35,7 +37,8 @@ const routerBase = useRouter()
 withDefaults(defineProps<EssentialLinkProps>(), {
     caption: '',
     link: '#',
-    icon: ''
+    icon: '',
+    show: true
 })
 const goTo = (link: string) => {
     routerBase.push({ name: link })

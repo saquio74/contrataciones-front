@@ -17,7 +17,7 @@ class Api {
     constructor(slug: string) {
         this.api = axios.create({
             baseURL: `${process.env.BASE_URL_API}/${slug}`,
-            timeout: 15000
+            timeout: 60000
         })
         const token = localStorage.getItem('token-laravel')
         if (token) this.api.defaults.headers.Authorization = `Bearer ${token}`
