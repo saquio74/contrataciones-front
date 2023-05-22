@@ -2,6 +2,7 @@
     <div>
         <q-select
             v-model="selected"
+            :disable="props.disable"
             filled
             use-input
             :hide-selected="hideSelected"
@@ -80,6 +81,10 @@ const props = defineProps({
     dataReturn: {
         type: String,
         default: () => 'id'
+    },
+    disable: {
+        type: Boolean,
+        default: false
     }
 })
 const loading = ref(false)

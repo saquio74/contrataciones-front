@@ -69,6 +69,7 @@
                 </template>
             </q-input>
             <q-btn
+                v-if="puedeCrearAgentes"
                 color="purple"
                 label="Nuevo agente"
                 @click="openNewModal"
@@ -100,6 +101,7 @@
                 <q-tr :props="props">
                     <q-td auto-width>
                         <q-btn
+                            v-if="puedeBorrarAgentes"
                             size="sm"
                             color="red"
                             round
@@ -109,6 +111,7 @@
                             @click="deleteAgente(props.row.id)"
                         />
                         <q-btn
+                            v-if="puedeEditarAgentes"
                             size="sm"
                             color="warning"
                             round
@@ -174,6 +177,7 @@ import { date, Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears,
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoAgente from './partials/NuevoAgente.vue'
 import agenteService from 'src/boot/services/agenteService.ts'
+import { useUserStore } from 'src/stores/usersStore/userStore.ts'
 const columns = [
     { name: 'Legajo', label: 'Legajo', field: 'legajo' },
     { name: 'dni', field: 'dni', label: 'DNI' },
@@ -217,7 +221,9 @@ const agente = ref<Agente>({})
 const loading = ref<boolean>(false)
 const disableButton = ref<boolean>(false)
 const agenteStore = useAgenteStore()
+const userStore = useUserStore()
 const { agentes, currentPage, total } = storeToRefs(agenteStore)
+const { puedeBorrarAgentes, puedeEditarAgentes, puedeCrearAgentes } = storeToRefs(userStore)
 const filtro = reactive<AgentesFilter>({ perPage: 10, page: 1 })
 
 const updatePagination = async (filtroTabla: AgentesFilter | undefined = undefined) => {
@@ -268,8 +274,6 @@ const actualizarAgente = async (agente: Agente) => {
 </script>
 <style lang="scss">
 .my-sticky-column-table {
-    /* specifying max-width so the example can
-    highlight the sticky column on any browser window */
     max-width: 100%;
 }
 </style>

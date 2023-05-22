@@ -50,39 +50,42 @@ import { useQuasar } from 'quasar'
 import { useUserStore } from 'src/stores/usersStore/userStore.ts'
 import { storeToRefs } from 'pinia'
 const userStore = useUserStore()
-const { user } = storeToRefs(userStore)
-console.log(user.value?.roles.special === 'all-access')
+const { vip, puedeVerAgentes, liquidar } = storeToRefs(userStore)
 const essentialLinks = computed<EssentialLinkProps[]>(() => [
     {
         title: 'Agentes',
         caption: 'Listado de agentes',
         icon: 'person',
-        link: 'listado-de-agentes'
+        link: 'listado-de-agentes',
+        show: puedeVerAgentes.value
     },
     {
         title: 'Liquidar',
         caption: 'Liquidar agentes',
         icon: 'create',
-        link: 'liquidar-agentes'
+        link: 'liquidar-agentes',
+        show: liquidar.value
     },
     {
         title: 'Listado de liquidados',
         caption: 'Liquidar agentes',
         icon: 'person',
-        link: 'listado-liquidados'
+        link: 'listado-liquidados',
+        show: liquidar.value
     },
     {
         title: 'Complementarias',
         caption: 'Liquidar complementarias',
         icon: 'create',
-        link: 'complementarias-view'
+        link: 'complementarias-view',
+        show: liquidar.value
     },
     {
         title: 'Roles y permisos',
         caption: 'Editar roles y permisos',
         icon: 'record_voice_over',
         link: 'roles-view',
-        show: user.value?.roles.special === 'all-access'
+        show: vip.value
     },
     {
         title: 'Discord Chat Channel',
