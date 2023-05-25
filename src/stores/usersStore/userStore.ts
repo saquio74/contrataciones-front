@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { User, Login } from 'src/interfaces/index.ts'
 import { computed, ref } from 'vue'
-import loginService from 'src/boot/services/loginService.ts'
+import userService from 'src/boot/services/userService.ts'
 
 export const useUserStore = defineStore('user', () => {
     const user = ref<User>()
@@ -33,14 +33,21 @@ export const useUserStore = defineStore('user', () => {
     )
     const vip = computed(() => user.value?.roles?.special === 'all-access')
     const login = async (loginData: Login) => {
-        const response: User = await loginService.basePost(loginData, 'login')
+        const response: User = await userService.login(loginData)
         user.value = response
         localStorage.setItem('token-laravel', response.token)
+        userService.instanceToken()
     }
     const authenticate = async () => {
-        user.value = await loginService.baseGetById('currentUser')
+        user.value = await userService.baseGetById('currentUser')
     }
 
+    const logout = async () => {
+        userService.logout()
+        localStorage.removeItem('laravel-token')
+        userService.instanceToken()
+        user.value = undefined
+    }
     return {
         user,
         vip,
@@ -50,6 +57,7 @@ export const useUserStore = defineStore('user', () => {
         puedeBorrarAgentes,
         liquidar,
         login,
-        authenticate
+        authenticate,
+        logout
     }
 })

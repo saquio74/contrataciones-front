@@ -19,8 +19,12 @@ class Api {
             baseURL: `${process.env.BASE_URL_API}/${slug}`,
             timeout: 60000
         })
+        this.instanceToken()
+    }
+    public instanceToken(): void {
         const token = localStorage.getItem('token-laravel')
         if (token) this.api.defaults.headers.Authorization = `Bearer ${token}`
+        if (!token) this.api.defaults.headers.Authorization = ''
         this.api.interceptors.response.use(
             (res) => res?.data ?? res,
             (error) => {

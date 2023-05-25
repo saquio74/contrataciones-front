@@ -8,7 +8,7 @@
             <BaseSelectReq
                 endpoint="complementaria/getperiodos"
                 opcion="fecha"
-                :current-filtro="{ columna: 'fecha' }"
+                :current-filtro="{ columna: 'fecha', hospital_id: complementariaFilter.hospital_id }"
                 @selected="selectPeriodo"
             />
         </BuscarInfoLiquidacion>

@@ -53,6 +53,13 @@ const userStore = useUserStore()
 const { vip, puedeVerAgentes, liquidar } = storeToRefs(userStore)
 const essentialLinks = computed<EssentialLinkProps[]>(() => [
     {
+        title: 'Inicio',
+        caption: 'Pagina principal',
+        icon: 'home',
+        link: 'home',
+        show: liquidar.value
+    },
+    {
         title: 'Agentes',
         caption: 'Listado de agentes',
         icon: 'person',
@@ -86,36 +93,6 @@ const essentialLinks = computed<EssentialLinkProps[]>(() => [
         icon: 'record_voice_over',
         link: 'roles-view',
         show: vip.value
-    },
-    {
-        title: 'Discord Chat Channel',
-        caption: 'chat.quasar.dev',
-        icon: 'chat',
-        link: 'https://chat.quasar.dev'
-    },
-    {
-        title: 'Forum',
-        caption: 'forum.quasar.dev',
-        icon: 'record_voice_over',
-        link: 'https://forum.quasar.dev'
-    },
-    {
-        title: 'Twitter',
-        caption: '@quasarframework',
-        icon: 'rss_feed',
-        link: 'https://twitter.quasar.dev'
-    },
-    {
-        title: 'Facebook',
-        caption: '@QuasarFramework',
-        icon: 'public',
-        link: 'https://facebook.quasar.dev'
-    },
-    {
-        title: 'Quasar Awesome',
-        caption: 'Community Quasar projects',
-        icon: 'favorite',
-        link: 'https://awesome.quasar.dev'
     }
 ])
 const quasar = useQuasar()
