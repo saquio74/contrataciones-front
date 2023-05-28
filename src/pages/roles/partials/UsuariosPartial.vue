@@ -138,7 +138,7 @@ const getUsers = async () => {
     usuarios.value = response.data
     currentPage.value = response.current_page
     total.value = response.total
-    console.log(total.value)
+    console.log(response)
 }
 const updatePagination = async (filtroTabla: UserFilter | undefined = undefined) => {
     loading.value = true
