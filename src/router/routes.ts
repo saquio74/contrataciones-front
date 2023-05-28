@@ -5,6 +5,9 @@ import routesLiquidar from '../pages/liquidar/routesLiquidar'
 import routesLiquidados from '../pages/listado/routesLiquidados'
 import routesComplementaria from 'src/pages/complementaria/routesComplementaria'
 import routesRoles from 'src/pages/roles/routesRoles'
+import hospitalesRoutes from 'src/pages/hospitales/routesHospitales.ts'
+import serviciosRoutes from 'src/pages/servicios/routesServicios.ts'
+import sectorRoutes from 'src/pages/sector/routesSector.ts'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
@@ -16,7 +19,10 @@ const routes: RouteRecordRaw[] = [
             ...routesLiquidar,
             ...routesLiquidados,
             ...routesComplementaria,
-            ...routesRoles
+            ...routesRoles,
+            ...hospitalesRoutes,
+            ...serviciosRoutes,
+            ...sectorRoutes
         ]
     },
 
