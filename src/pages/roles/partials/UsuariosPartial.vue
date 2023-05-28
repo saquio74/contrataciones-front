@@ -135,7 +135,9 @@ const columns = [
 const getUsers = async () => {
     const response = await userService.baseGetQuery(filtro)
     usuarios.value = response.data
-    ;(currentPage.value = response.current_page), (total.value = response.total)
+    console.log(usuarios.value)
+    currentPage.value = response.current_page
+    total.value = response.total
 }
 const updatePagination = async (filtroTabla: UserFilter | undefined = undefined) => {
     loading.value = true
