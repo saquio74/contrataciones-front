@@ -7,7 +7,8 @@ class baseController<req, res, filter, resPaginated> extends Api {
         return await this.api.get<req, res[]>(extension)
     }
     async baseGetQuery(query: filter, extension = ''): Promise<resPaginated> {
-        return await this.api.get<filter, resPaginated>(extension, { params: { ...query } })
+        const response = await this.api.get<filter, resPaginated>(extension, { params: { ...query } })
+        return response
     }
     async baseGetQueryWithoutPagination(query: filter, extension = ''): Promise<res[]> {
         return await this.api.get<filter, res[]>(extension, { params: { ...query } })
