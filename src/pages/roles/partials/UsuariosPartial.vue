@@ -1,6 +1,7 @@
 <template>
     <div>
         <q-table
+            v-if="usuarios && usuarios.length"
             class="my-sticky-column-table"
             :rows="usuarios"
             :columns="columns"
@@ -135,9 +136,9 @@ const columns = [
 const getUsers = async () => {
     const response = await userService.baseGetQuery(filtro)
     usuarios.value = response.data
-    console.log(usuarios.value)
     currentPage.value = response.current_page
     total.value = response.total
+    console.log(total.value)
 }
 const updatePagination = async (filtroTabla: UserFilter | undefined = undefined) => {
     loading.value = true
