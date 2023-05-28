@@ -16,3 +16,10 @@ export interface UserFilter extends BaseFilter {
     name?: string
     email?: string
 }
+export interface Registro {
+    name: string
+    email: string
+    password: string
+    password_confirmation: string
+    role_id: number
+}

@@ -37,6 +37,11 @@
                 label="Enviar"
                 type="submit"
             />
+            <q-btn
+                color="secondary"
+                label="Registrarse"
+                @click="irRegistro"
+            />
         </form>
     </q-page>
 </template>
@@ -66,11 +71,14 @@ const { login } = userStore
 const enviarLogin = async () => {
     emailRef.value?.validate()
     passwordRef.value?.validate()
-    if (emailRef.value?.hasErrors || passwordRef.value?.hasErrors) return
+    if (emailRef.value?.hasError || passwordRef.value?.hasError) return
 
     await login(loginData)
 
     router.push({ name: 'home' })
+}
+const irRegistro = async () => {
+    await router.push({ name: 'register-view' })
 }
 </script>
 <style scoped>

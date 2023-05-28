@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { User, Login } from 'src/interfaces/index.ts'
+import type { User, Login, Registro } from 'src/interfaces/index.ts'
 import { computed, ref } from 'vue'
 import userService from 'src/boot/services/userService.ts'
 
@@ -34,8 +34,15 @@ export const useUserStore = defineStore('user', () => {
     const vip = computed(() => user.value?.roles?.special === 'all-access')
     const login = async (loginData: Login) => {
         const response: User = await userService.login(loginData)
-        user.value = response
-        localStorage.setItem('token-laravel', response.token)
+        setUser(response)
+    }
+    const register = async (register: Registro) => {
+        const respose: User = await userService.register(register)
+        setUser(respose)
+    }
+    const setUser = (userResponse: User) => {
+        user.value = userResponse
+        localStorage.setItem('token-laravel', userResponse.token)
         userService.instanceToken()
     }
     const authenticate = async () => {
@@ -57,6 +64,7 @@ export const useUserStore = defineStore('user', () => {
         puedeBorrarAgentes,
         liquidar,
         login,
+        register,
         authenticate,
         logout
     }

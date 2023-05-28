@@ -1,4 +1,4 @@
 export default interface Validation {
     validate(): boolean
-    hasErrors: boolean
+    hasError: boolean
 }
