@@ -15,16 +15,15 @@
             >
                 <q-tabs
                     v-if="verificarServicio(agente, index)"
-                    align="left"
+                    align="center"
                     inline-label
                     outside-arrows
                     mobile-arrows
                     class="bg-primary q-mt-lg text-white shadow-2"
                 >
-                    <q-tab
-                        name="legajo"
-                        :label="agente.servicio?.servicio"
-                    />
+                    <h6>
+                        {{ agente.servicio?.servicio }}
+                    </h6>
                 </q-tabs>
                 <q-tabs
                     v-if="verificarSector(agente, index)"
@@ -34,40 +33,38 @@
                     mobile-arrows
                     class="bg-primary q-my-lg text-white shadow-2"
                 >
-                    <q-tab
-                        name="legajo"
-                        :label="agente.sector?.sector"
-                    />
+                    <h6>
+                        {{ agente.sector?.sector }}
+                    </h6>
                 </q-tabs>
-                <q-toolbar class="bg-purple text-white shadow-2 rounded-borders">
-                    <q-btn
-                        flat
-                        :label="agente.legajo"
-                    />
-                    <q-btn
-                        flat
-                        :label="agente.nombre"
-                    />
+                <q-toolbar class="bg-blue-grey text-white shadow-2 rounded-borders">
+                    {{ agente.legajo }}
+                    <q-space />
+                    <p>
+                        {{ agente.nombre }}
+                    </p>
                     <q-space />
 
                     <q-tabs
+                        v-for="ageninc in agente.ageninc"
+                        :key="ageninc.id"
                         align="left"
                         inline-label
                         outside-arrows
                         mobile-arrows
                         class="text-white shadow-2"
+                        :class="verificarColor(agente.liquidacion_actual as Agenfac[], ageninc.inciso_id)"
                     >
-                        <q-tab
-                            v-for="ageninc in agente.ageninc"
-                            :key="ageninc.id"
+                        <q-chip
                             :ageninc="ageninc"
-                            :class="verificarColor(agente.liquidacion_actual as Agenfac[], ageninc.inciso_id)"
                             shrink
                             stretch
                             class="q-mr-auto"
+                            :class="verificarColor(agente.liquidacion_actual as Agenfac[], ageninc.inciso_id)"
                             :name="ageninc.inciso_id"
                             :label="ageninc.inciso.inciso"
                         />
+
                         <q-space />
                     </q-tabs>
                 </q-toolbar>

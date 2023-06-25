@@ -1,5 +1,10 @@
 <template>
     <q-page class="column q-mt-lg">
+        <h4 class="text-center">
+            Periodo
+            {{ periodo.periodo }}
+            {{ periodo.anio }}
+        </h4>
         <div class="row justify-around q-mt-lg q-mx-lg">
             <BaseSelectReq
                 endpoint="hospitales"
@@ -38,7 +43,7 @@
                     inline-label
                     outside-arrows
                     mobile-arrows
-                    class="bg-purple text-white shadow-2"
+                    class="bg-blue-grey text-white shadow-2"
                 >
                     <q-tab
                         name="legajo"
@@ -90,7 +95,7 @@ import agenfacService from 'src/boot/services/agenfacService.ts'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import { SelecOption, Agente, Agenfac } from 'src/interfaces.ts'
 import LiquidarHorasVue from './LiquidarHoras.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { Notify, QPage, QTabs, QTab, QSpace, QSeparator, QBtn } from 'quasar'
 const hospitalId = ref<number | undefined>(undefined)
 const servicioId = ref<number | undefined>(undefined)
@@ -119,6 +124,15 @@ const selectedSector = async (sect: SelecOption<number>) => {
     sectorId.value = sect.value
     getAgentes()
 }
+const periodo = computed<{ periodo: string; anio: number }>(() => {
+    const date = new Date()
+    date.setMonth(date.getMonth() - 1)
+
+    return {
+        anio: date.getMonth() === 11 ? new Date().getFullYear() - 1 : new Date().getFullYear(),
+        periodo: date.toLocaleDateString('es-ar', { month: 'long' })
+    }
+})
 const getAgentes = async () => {
     agentesLiquidar.value = await agenteService.baseGetQueryWithoutPagination(
         {

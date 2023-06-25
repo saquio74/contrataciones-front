@@ -64,6 +64,13 @@
                     type="submit"
                 />
             </div>
+            <div class="q-mt-xl">
+                <q-btn
+                    color="Secondary"
+                    label="Ya tengo cuenta"
+                    @click="() => router.push({ name: 'home' })"
+                />
+            </div>
         </form>
     </q-page>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <q-layout view="lHh Lpr lFf">
-        <q-header elevated>
+        <q-header class="print-hide">
             <q-toolbar>
                 <q-btn
                     flat
@@ -25,6 +25,7 @@
             v-model="leftDrawerOpen"
             show-if-above
             bordered
+            class="print-hide"
         >
             <q-list>
                 <q-item-label header> Opciones </q-item-label>
@@ -132,3 +133,10 @@ function toggleLeftDrawer() {
     leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
+<style lang="scss" scoped>
+@media print {
+    .print-hide {
+        display: none !important;
+    }
+}
+</style>

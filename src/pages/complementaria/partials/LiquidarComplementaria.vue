@@ -27,7 +27,7 @@
             inline-label
             outside-arrows
             mobile-arrows
-            class="bg-purple text-white shadow-2"
+            class="bg-blue-grey text-white shadow-2"
         >
             <q-tab
                 name="legajo"

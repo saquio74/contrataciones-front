@@ -41,7 +41,7 @@
                     :label="agenfac.sector"
                 />
             </q-tabs>
-            <q-toolbar class="bg-purple text-white shadow-2 rounded-borders">
+            <q-toolbar class="bg-blue-grey text-white shadow-2 rounded-borders">
                 <q-btn
                     flat
                     :label="agenfac.legajo"
