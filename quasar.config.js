@@ -80,7 +80,8 @@ module.exports = configure(function (/* ctx */) {
             //   [ 'package-name', { ..options.. } ]
             // ]
             env: {
-                BASE_URL_API: 'https://contrataciones-api-laravel-9-production.up.railway.app/api'
+                // BASE_URL_API: 'https://contrataciones-api-laravel-9-production.up.railway.app/api'
+                BASE_URL_API: 'http://127.0.0.1:8000/api'
             }
         },
 

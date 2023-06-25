@@ -40,6 +40,11 @@
                 :label="agente.nombre"
                 class
             />
+            <q-tab
+                name="hospital"
+                :label="agente.hospital?.hospital"
+                class
+            />
             <LiquidarHoras
                 v-for="ageninc in agente.ageninc"
                 :key="ageninc.id"
