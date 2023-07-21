@@ -21,7 +21,7 @@
                 v-model="agenfac.bonificacion"
                 :options="options"
                 class="q-mx-sm"
-                label="bonificacion"
+                label="bon."
                 style="min-width: 120px"
                 @update:model-value="updateAgenfac"
             />

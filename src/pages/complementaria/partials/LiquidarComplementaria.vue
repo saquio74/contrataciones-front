@@ -46,11 +46,11 @@
                 class
             />
             <LiquidarHoras
-                v-for="ageninc in agente.ageninc"
+                v-for="(ageninc, index) in agente.ageninc"
                 :key="ageninc.id"
                 :ageninc="ageninc"
                 :hospital-id="(agente.hospital_id as number)"
-                :color="'bg-positive'"
+                :color="index === 0 ? 'bg-indigo' : 'bg-blue'"
                 @liquidar="(data) => liquidarComplementaria(data)"
             />
             <q-space />
