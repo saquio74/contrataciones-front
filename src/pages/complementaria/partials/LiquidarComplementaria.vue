@@ -23,6 +23,8 @@
             }"
         />
         <q-tabs
+            v-for="(ageninc, index) in agente.ageninc"
+            :key="ageninc.id"
             align="left"
             inline-label
             outside-arrows
@@ -46,8 +48,6 @@
                 class
             />
             <LiquidarHoras
-                v-for="(ageninc, index) in agente.ageninc"
-                :key="ageninc.id"
                 :ageninc="ageninc"
                 :hospital-id="(agente.hospital_id as number)"
                 :color="index === 0 ? 'bg-indigo' : 'bg-blue'"
@@ -119,5 +119,6 @@ const guardarLiquidacion = async () => {
     console.log(complementariaLiquidar.value)
     await ComplementariaService.liquidacionMasiva(complementariaLiquidar.value)
     complementariaLiquidar.value = []
+    agente.value = {}
 }
 </script>
