@@ -10,6 +10,11 @@ const agentesRoutes: RouteRecordRaw[] = [
         path: '/register-view',
         name: 'register-view',
         component: () => import('pages/login/RegisterView.vue')
+    },
+    {
+        path: '/change-password-view',
+        name: 'change-password-view',
+        component: () => import('pages/login/ChangePasswordView.vue')
     }
 ]
 

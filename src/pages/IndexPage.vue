@@ -10,6 +10,14 @@
         >
             Cerrar sesión
         </q-btn>
+        <q-btn
+            :outline="true"
+            class="mt-1"
+            color="red q-ma-sm"
+            @click="router.push('change-password-view')"
+        >
+            Cambiar contraseña
+        </q-btn>
         <h5 class="text-primary">Tu permisos son:</h5>
 
         <div class="row ms-1">

@@ -23,3 +23,8 @@ export interface Registro {
     password_confirmation: string
     role_id: number
 }
+export interface ChangePassword {
+    password: string
+    password_confirmation: string
+    oldPassword: string
+}

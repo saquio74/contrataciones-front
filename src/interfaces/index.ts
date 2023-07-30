@@ -1,6 +1,6 @@
 import type Login from './login'
 import type Validation from './validations'
-import type { User, UserFilter, Registro } from './user/user'
+import type { User, UserFilter, Registro, ChangePassword } from './user/user'
 import type { Agente, AgentesFilter } from './agentes/agentes'
 import type { Servicio, ServicioFilter } from './servicio/servicio'
 import type { Sector, SectorFilter } from './sector/sector'
@@ -40,5 +40,6 @@ export {
     PermisosFilter,
     RolesPermisos,
     UserFilter,
-    Registro
+    Registro,
+    ChangePassword
 }

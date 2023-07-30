@@ -1,6 +1,6 @@
 import { BaseFilter } from 'src/interfaces/filters/baseFilter.ts'
 import type { BasePagination } from 'src/interfaces/pagination/basePagination.ts'
-import { Login, Registro, User } from '../../interfaces/index'
+import { ChangePassword, Login, Registro, User } from '../../interfaces/index'
 import baseController from '../baseController'
 class userService extends baseController<User, User, BaseFilter, BasePagination<User>> {
     public logout() {
@@ -11,6 +11,9 @@ class userService extends baseController<User, User, BaseFilter, BasePagination<
     }
     public async register(registro: Registro): Promise<User> {
         return await this.api.post<Registro, User>('register', registro)
+    }
+    public async updatePassword(passwordRequest: ChangePassword) {
+        return await this.api.patch<ChangePassword, void>('updatePassword', passwordRequest)
     }
 }
 export default new userService('users')
