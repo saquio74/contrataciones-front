@@ -1,5 +1,5 @@
 <template>
-    <div class="q-my-auto">
+    <div class="q-my-auto liquidar">
         <q-tabs
             v-if="ageninc"
             align="left"
@@ -83,7 +83,8 @@ const agenfac = reactive<Agenfac>({
     created_by: null
 })
 const updateAgenfac = () => {
-    if (!props.ageninc) return
+    if (!props.ageninc || !props.ageninc?.inciso?.valor) return
+
     const date = new Date()
     date.setMonth(date.getMonth() - 1)
 
@@ -99,3 +100,8 @@ const liquidar = () => {
     if (agenfac.horas > 0) emit('liquidar', agenfac)
 }
 </script>
+<style scoped>
+.liquidar {
+    min-width: 800px;
+}
+</style>
