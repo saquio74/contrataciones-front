@@ -8,6 +8,7 @@ import routesRoles from 'src/pages/roles/routesRoles'
 import hospitalesRoutes from 'src/pages/hospitales/routesHospitales.ts'
 import serviciosRoutes from 'src/pages/servicios/routesServicios.ts'
 import sectorRoutes from 'src/pages/sector/routesSector.ts'
+import incisosRoutes from 'src/pages/incisos/routesIncisos.ts'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
@@ -22,7 +23,8 @@ const routes: RouteRecordRaw[] = [
             ...routesRoles,
             ...hospitalesRoutes,
             ...serviciosRoutes,
-            ...sectorRoutes
+            ...sectorRoutes,
+            ...incisosRoutes
         ]
     },
 

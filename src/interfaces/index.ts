@@ -5,7 +5,7 @@ import type { Agente, AgentesFilter } from './agentes/agentes'
 import type { Servicio, ServicioFilter } from './servicio/servicio'
 import type { Sector, SectorFilter } from './sector/sector'
 import type { Hospital, HospitalFilter } from './hospital/hospital'
-import type { Inciso, Ageninc } from './incisos/incisos'
+import type { Inciso, Ageninc, IncisoFilter } from './incisos/incisos'
 import type { BasePagination } from './pagination/basePagination'
 import type { SelecOption } from './filters/baseFilter'
 import type { Agenfac, AgenfacFilter } from './agenfac/agenfac'
@@ -41,5 +41,6 @@ export {
     RolesPermisos,
     UserFilter,
     Registro,
-    ChangePassword
+    ChangePassword,
+    IncisoFilter
 }

@@ -115,6 +115,13 @@ const essentialLinks = computed<EssentialLinkProps[]>(() => [
         icon: 'design_services',
         link: 'listado-de-sector',
         show: vip.value
+    },
+    {
+        title: 'Incisos',
+        caption: 'Administrar incisos',
+        icon: 'money',
+        link: 'listado-de-incisos',
+        show: vip.value
     }
 ])
 const quasar = useQuasar()
