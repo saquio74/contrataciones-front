@@ -34,7 +34,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import baseController from 'src/boot/baseController.ts'
 import type { BasePagination, SelecOption } from 'src/interfaces.ts'
 const props = defineProps({
@@ -126,6 +126,14 @@ onMounted(() => {
     if (props.preLoad && props.preLoad.label) selected.value = props.preLoad
     if (props.preLoad?.length > 0) selected.value = props.preLoad
 })
+watch(
+    () => props.preLoad,
+    () => {
+        console.log('change')
+        if (props.preLoad && props.preLoad.label) selected.value = props.preLoad
+        if (props.preLoad?.length > 0) selected.value = props.preLoad
+    }
+)
 const filterFn = (val: string, update: (func: () => void) => void) => {
     update(() => {
         getData(val)

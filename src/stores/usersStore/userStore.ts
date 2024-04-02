@@ -6,26 +6,18 @@ import userService from 'src/boot/services/userService.ts'
 export const useUserStore = defineStore('user', () => {
     const user = ref<User>()
 
-    const puedeVerAgentes = computed(() =>
-        user.value?.roles?.permissionsrole.some((data) =>
-            data.permissions?.slug.toLocaleLowerCase().includes('agentes.ver')
-        )
-    )
-    const puedeEditarAgentes = computed(() =>
-        user.value?.roles?.permissionsrole.some((data) =>
-            data.permissions?.slug.toLocaleLowerCase().includes('agentes.editar')
-        )
-    )
-    const puedeCrearAgentes = computed(() =>
-        user.value?.roles?.permissionsrole.some((data) =>
-            data.permissions?.slug.toLocaleLowerCase().includes('agentes.crear')
-        )
-    )
-    const puedeBorrarAgentes = computed(() =>
-        user.value?.roles?.permissionsrole.some((data) =>
-            data.permissions?.slug.toLocaleLowerCase().includes('agentes.borrar')
-        )
-    )
+    const buscarRol = (rol: string) =>
+        user.value?.roles?.permissionsrole.some((data) => data.permissions?.slug.toLocaleLowerCase().includes(rol))
+    const puedeVerProfesionales = computed(() => buscarRol('profesionales.ver'))
+    const puedeEditarProfesionales = computed(() => buscarRol('profesionales.editar'))
+    const puedeCrearProfesionales = computed(() => buscarRol('profesionales.crear'))
+    const puedeBorrarProfesionales = computed(() => buscarRol('profesionales.borrar'))
+
+    const puedeVerAgentes = computed(() => buscarRol('agentes.ver'))
+    const puedeEditarAgentes = computed(() => buscarRol('agentes.editar'))
+    const puedeCrearAgentes = computed(() => buscarRol('agentes.crear'))
+    const puedeBorrarAgentes = computed(() => buscarRol('agentes.borrar'))
+
     const liquidar = computed(() =>
         user.value?.roles?.permissionsrole.some((data) =>
             data?.permissions?.name.toLocaleLowerCase().includes('liquidar')
@@ -63,6 +55,10 @@ export const useUserStore = defineStore('user', () => {
         puedeEditarAgentes,
         puedeBorrarAgentes,
         liquidar,
+        puedeVerProfesionales,
+        puedeCrearProfesionales,
+        puedeEditarProfesionales,
+        puedeBorrarProfesionales,
         login,
         register,
         authenticate,

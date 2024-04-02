@@ -75,7 +75,6 @@
                 <BaseSelectReq
                     endpoint="permissions"
                     opcion="name"
-                    :disable="currentRol?.special === 'all-access'"
                     :multiple="true"
                     :use-chips="true"
                     :hide-selected="false"
@@ -100,6 +99,15 @@
                         @remove="quitRol(user)"
                     />
                 </div>
+                <div class="q-pa-md q-gutter-sm">
+                    <q-btn
+                        color="success"
+                        label="Guardar rol"
+                        icon-right="send"
+                        :loading="disable"
+                        @click="guardarRol"
+                    />
+                </div>
             </div>
         </BaseModal>
     </div>
@@ -108,7 +116,7 @@
 import BaseModal from 'src/components/BaseModal.vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import rolesService from 'src/boot/services/rolesService.ts'
-import { Roles, RolesFilter, SelecOption, RolesPermisos, User } from 'src/interfaces.ts'
+import { Roles, RolesFilter, SelecOption, User } from 'src/interfaces.ts'
 import { onMounted, reactive, ref } from 'vue'
 
 const dialog = ref<boolean>(false)
@@ -116,8 +124,8 @@ const filtro = reactive<RolesFilter>({ perPage: 10, page: 1 })
 const deleteRol = async (rol: number) => {
     await rolesService.baseDelete(rol.toString())
 }
+const disable = ref<boolean>(false)
 const roles = ref<Roles[]>([])
-const permissions = ref<RolesPermisos[]>([])
 const loading = ref<boolean>(false)
 const total = ref<number>(0)
 const currentPage = ref<number>(0)
@@ -165,9 +173,22 @@ const updateRol = (rol: Roles) => {
     currentRol.value = rol
 }
 const seleccionarRol = (data: SelecOption<number>[]) => {
-    permissions.value = data.map((data) => {
+    currentRol.value.permissionsrole = data.map((data) => {
         return { roles_id: currentRol.value?.id ?? 0, permmissions_id: data.value }
     })
+}
+
+const guardarRol = async () => {
+    try {
+        loading.value = true
+        // currentRol.value.permissionsrole = permissions
+        await rolesService.basePut(currentRol.value)
+    } catch (error) {
+    } finally {
+        loading.value = false
+        dialog.value = false
+        getRoles()
+    }
 }
 
 const quitRol = (user: User) => {

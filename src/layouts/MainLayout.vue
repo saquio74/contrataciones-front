@@ -51,7 +51,7 @@ import { useQuasar } from 'quasar'
 import { useUserStore } from 'src/stores/usersStore/userStore.ts'
 import { storeToRefs } from 'pinia'
 const userStore = useUserStore()
-const { vip, puedeVerAgentes, liquidar } = storeToRefs(userStore)
+const { vip, puedeVerAgentes, liquidar, puedeVerProfesionales } = storeToRefs(userStore)
 const essentialLinks = computed<EssentialLinkProps[]>(() => [
     {
         title: 'Inicio',
@@ -122,6 +122,13 @@ const essentialLinks = computed<EssentialLinkProps[]>(() => [
         icon: 'money',
         link: 'listado-de-incisos',
         show: vip.value
+    },
+    {
+        title: 'Profesionales',
+        caption: 'Administrar profesionales',
+        icon: 'person',
+        link: 'listado-de-profesionales',
+        show: puedeVerProfesionales.value
     }
 ])
 const quasar = useQuasar()

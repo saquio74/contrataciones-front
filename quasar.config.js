@@ -80,15 +80,15 @@ module.exports = configure(function (/* ctx */) {
             //   [ 'package-name', { ..options.. } ]
             // ]
             env: {
-                BASE_URL_API: 'https://contrataciones-api-laravel-9-production.up.railway.app/api'
-                // BASE_URL_API: 'http://127.0.0.1:8000/api'
+                // BASE_URL_API: 'https://contrataciones-api-laravel-9-production.up.railway.app/api'
+                BASE_URL_API: 'http://127.0.0.1:8000/api'
             }
         },
 
         // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
         devServer: {
             // https: true
-            open: true // opens browser window automatically
+            open: false // opens browser window automatically
         },
 
         // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework

@@ -13,6 +13,7 @@ import type { Complementaria, ComplementariaFilter } from './agenfac/complementa
 import type { RolesFilter, Roles } from './rolesPermisos/roles'
 import type { Permisos, PermisosFilter } from './rolesPermisos/permisos'
 import type { RolesPermisos } from './rolesPermisos/rolesPermisos'
+import type { Profesional, ProfesionalFilter } from './profesionales/profesional'
 
 export {
     Login,
@@ -42,5 +43,7 @@ export {
     UserFilter,
     Registro,
     ChangePassword,
-    IncisoFilter
+    IncisoFilter,
+    Profesional,
+    ProfesionalFilter
 }

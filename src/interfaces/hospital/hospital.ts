@@ -1,7 +1,7 @@
+import { baseModel } from '../baseInterfaces/baseModel'
 import { BaseFilter } from '../filters/baseFilter'
 
-export interface Hospital {
-    id?: number
+export interface Hospital extends baseModel {
     hospital?: string
 }
 export interface HospitalFilter extends BaseFilter {
