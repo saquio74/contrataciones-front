@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import type { User, Login, Registro } from 'src/interfaces/index.ts'
+import type { User, Login, Registro } from 'src/interfaces/index'
 import { computed, ref } from 'vue'
-import userService from 'src/boot/services/userService.ts'
+import userService from 'src/boot/services/userService'
 
 export const useUserStore = defineStore('user', () => {
     const user = ref<User>()

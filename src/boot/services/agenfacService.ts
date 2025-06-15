@@ -1,4 +1,4 @@
-import { BasePagination, Agenfac, AgenfacFilter } from 'src/interfaces.ts'
+import { BasePagination, Agenfac, AgenfacFilter } from 'src/interfaces'
 import baseController from '../baseController'
 
 class agenteService extends baseController<Agenfac, Agenfac, AgenfacFilter, BasePagination<Agenfac>> {
@@ -6,7 +6,7 @@ class agenteService extends baseController<Agenfac, Agenfac, AgenfacFilter, Base
         await this.api.post<Agenfac[], boolean>('guardarLiquidacion', agenfac)
     }
     public async getExcel(agenfacFilter: AgenfacFilter): Promise<string> {
-        return await this.api.get<AgenfacFilter, string>('getExcel', {
+        return await this.api.get<AgenfacFilter, string>('getExcelv2', {
             params: { ...agenfacFilter },
             responseType: 'blob'
         })

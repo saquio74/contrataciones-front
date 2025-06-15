@@ -1,4 +1,4 @@
-import { BasePagination, Profesional, ProfesionalFilter } from 'src/interfaces.ts'
+import { BasePagination, Profesional, ProfesionalFilter } from 'src/interfaces'
 import baseController from '../baseController'
 
 class profesionalService extends baseController<

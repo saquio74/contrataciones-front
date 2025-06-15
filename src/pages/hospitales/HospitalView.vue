@@ -113,11 +113,11 @@
 </template>
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { Hospital, HospitalFilter } from 'src/interfaces.ts'
+import { Hospital, HospitalFilter } from 'src/interfaces'
 import { Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears, QTable, QTd, QTh, QTr } from 'quasar'
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoHospital from './partials/NuevoHospital.vue'
-import hospitalService from 'src/boot/services/hospitalService.ts'
+import hospitalService from 'src/boot/services/hospitalService'
 const columns = [{ name: 'Hospital', label: 'Hospital', field: 'hospital' }]
 
 const dialog = ref(false)

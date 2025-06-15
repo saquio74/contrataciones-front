@@ -1,4 +1,4 @@
-import { Agente, BasePagination, Roles, RolesFilter } from 'src/interfaces.ts'
+import { Agente, BasePagination, Roles, RolesFilter } from 'src/interfaces'
 import baseController from '../baseController'
 
 class rolesService extends baseController<Roles, Roles, RolesFilter, BasePagination<Roles>> {

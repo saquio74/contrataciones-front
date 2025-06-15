@@ -1,4 +1,4 @@
-import type { baseModel } from 'src/interfaces/baseInterfaces/baseModel.ts'
+import type { baseModel } from 'src/interfaces/baseInterfaces/baseModel'
 import { BaseFilter } from '../filters/baseFilter'
 import { Provhosp } from './provhosp'
 export interface Profesional extends baseModel {

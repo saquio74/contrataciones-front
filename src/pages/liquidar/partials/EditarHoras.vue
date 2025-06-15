@@ -100,10 +100,10 @@
     </q-card-section>
 </template>
 <script setup lang="ts">
-import { Agenfac } from 'src/interfaces.ts'
+import { Agenfac } from 'src/interfaces'
 import { ref } from 'vue'
 import { QCardSection, QInput, QBtn } from 'quasar'
-import agenfacService from 'src/boot/services/agenfacService.ts'
+import agenfacService from 'src/boot/services/agenfacService'
 interface Props {
     agenfac: Agenfac
     disable?: boolean

@@ -115,8 +115,8 @@
 <script lang="ts" setup>
 import BaseModal from 'src/components/BaseModal.vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
-import rolesService from 'src/boot/services/rolesService.ts'
-import { Roles, RolesFilter, SelecOption, User } from 'src/interfaces.ts'
+import rolesService from 'src/boot/services/rolesService'
+import { Roles, RolesFilter, SelecOption, User } from 'src/interfaces'
 import { onMounted, reactive, ref } from 'vue'
 
 const dialog = ref<boolean>(false)

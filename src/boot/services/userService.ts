@@ -1,5 +1,5 @@
-import { BaseFilter } from 'src/interfaces/filters/baseFilter.ts'
-import type { BasePagination } from 'src/interfaces/pagination/basePagination.ts'
+import { BaseFilter } from 'src/interfaces/filters/baseFilter'
+import type { BasePagination } from 'src/interfaces/pagination/basePagination'
 import { ChangePassword, Login, Registro, User } from '../../interfaces/index'
 import baseController from '../baseController'
 class userService extends baseController<User, User, BaseFilter, BasePagination<User>> {

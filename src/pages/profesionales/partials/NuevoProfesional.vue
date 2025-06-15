@@ -66,17 +66,15 @@
     </q-card-section>
 </template>
 <script setup lang="ts">
-import { type Profesional, SelecOption } from 'src/interfaces.ts'
+import { type Profesional, SelecOption } from 'src/interfaces'
 import { ref, onMounted } from 'vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import { QCardSection, QInput, QBtn } from 'quasar'
-import profesionalesService from 'src/boot/services/profesionalesService.ts'
+import profesionalesService from 'src/boot/services/profesionalesService'
 interface Props {
     profesionalProp: number | undefined
 }
-const props = withDefaults(defineProps<Props>(), {
-    profesionalProp: 0
-})
+const props = withDefaults(defineProps<Props>(), { profesionalProp: 0 })
 const profesional = ref<Profesional>({
     proveedor: 0,
     nombre: '',
@@ -92,13 +90,7 @@ const disable = ref(false)
 const seleccionarHospital = (hospital: SelecOption<number>[]) => {
     console.log('msg', hospital)
     profesional.value.provhosp = hospital.map((hosp) => {
-        return {
-            hospital_id: hosp.value,
-            hospital: {
-                hospital: hosp.label
-            },
-            proveedor_id: profesional.value.id ?? 0
-        }
+        return { hospital_id: hosp.value, hospital: { hospital: hosp.label }, proveedor_id: profesional.value.id ?? 0 }
     })
 }
 

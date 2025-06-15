@@ -1,4 +1,4 @@
-import { BasePagination, Permisos, PermisosFilter } from 'src/interfaces.ts'
+import { BasePagination, Permisos, PermisosFilter } from 'src/interfaces'
 import baseController from '../baseController'
 
 class permissionsService extends baseController<Permisos, Permisos, PermisosFilter, BasePagination<Permisos>> {}

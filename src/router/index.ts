@@ -1,10 +1,9 @@
-import { route } from 'quasar/wrappers'
 import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 import routes from './routes'
-import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import { useUserStore } from '@/stores/usersStore/userStore'
 
-export default route(function (/* { store, ssrContext } */) {
+export default function (/* { store, ssrContext } */) {
     const history = process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory
     const createHistory = process.env.SERVER ? createMemoryHistory : history
 
@@ -22,4 +21,4 @@ export default route(function (/* { store, ssrContext } */) {
         }
     })
     return Router
-})
+}

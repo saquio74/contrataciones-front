@@ -48,7 +48,7 @@
 import { computed, ref } from 'vue'
 import EssentialLink, { EssentialLinkProps } from '../components/EssentialLink.vue'
 import { useQuasar } from 'quasar'
-import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import { useUserStore } from 'src/stores/usersStore/userStore'
 import { storeToRefs } from 'pinia'
 const userStore = useUserStore()
 const { vip, puedeVerAgentes, liquidar, puedeVerProfesionales } = storeToRefs(userStore)

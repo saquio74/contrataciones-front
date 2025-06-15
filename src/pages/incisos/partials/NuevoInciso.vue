@@ -25,7 +25,7 @@
     </q-card-section>
 </template>
 <script setup lang="ts">
-import { Inciso } from 'src/interfaces.ts'
+import { Inciso } from 'src/interfaces'
 import { reactive, ref } from 'vue'
 import { QCardSection, QInput, QBtn } from 'quasar'
 const props = defineProps({

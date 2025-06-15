@@ -113,11 +113,11 @@
 </template>
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { Servicio, ServicioFilter } from 'src/interfaces.ts'
+import { Servicio, ServicioFilter } from 'src/interfaces'
 import { Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears, QTable, QTd, QTh, QTr } from 'quasar'
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoServicio from './partials/NuevoServicio.vue'
-import servicioService from 'src/boot/services/servicioService.ts'
+import servicioService from 'src/boot/services/servicioService'
 const columns = [{ name: 'Servicio', label: 'Servicio', field: 'servicio' }]
 
 const dialog = ref(false)

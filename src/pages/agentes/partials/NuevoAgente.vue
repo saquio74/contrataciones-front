@@ -13,6 +13,12 @@
             class="q-mb-lg"
         />
         <q-input
+            v-model="agente.codigo"
+            :type="'text'"
+            label="Código"
+            class="q-mb-lg"
+        />
+        <q-input
             v-model="agente.nombre"
             :type="'text'"
             label="Nombre"
@@ -73,7 +79,7 @@
     </q-card-section>
 </template>
 <script setup lang="ts">
-import { Agente, SelecOption } from 'src/interfaces.ts'
+import { Agente, SelecOption } from 'src/interfaces'
 import { reactive, ref, onMounted } from 'vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import { QCardSection, QInput, QBtn } from 'quasar'

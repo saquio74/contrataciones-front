@@ -12,9 +12,7 @@ const { authenticate } = storeUser
 onBeforeMount(async () => {
     try {
         await authenticate()
-    } catch (error) {
-        console.log(error)
-    }
+    } catch (error) {}
 
     router.push({ name: 'home' })
 })

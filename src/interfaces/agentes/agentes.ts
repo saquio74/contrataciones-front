@@ -10,6 +10,7 @@ export interface Agente {
     legajo?: number
     dni?: number
     nombre?: string
+    codigo?: string
     incisos?: number[]
     horarios?: string
     telefono?: string

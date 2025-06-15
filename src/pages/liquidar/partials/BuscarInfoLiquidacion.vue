@@ -24,9 +24,9 @@
     </div>
 </template>
 <script lang="ts" setup>
-// import BaseSelectReq from 'src/components/BaseSelectReq.vue.ts'
+// import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
-import { AgenfacFilter, SelecOption } from 'src/interfaces.ts'
+import { AgenfacFilter, SelecOption } from 'src/interfaces'
 import { reactive } from 'vue'
 interface Props {
     verHospital?: boolean

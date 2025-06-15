@@ -55,7 +55,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { Agenfac, Ageninc } from 'src/interfaces.ts'
+import { Agenfac, Ageninc } from 'src/interfaces'
 import { reactive } from 'vue'
 
 export interface Props {

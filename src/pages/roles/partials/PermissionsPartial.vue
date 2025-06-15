@@ -62,8 +62,8 @@
     </div>
 </template>
 <script lang="ts" setup>
-import permisosService from 'src/boot/services/permissionsService.ts'
-import { Permisos, PermisosFilter } from 'src/interfaces.ts'
+import permisosService from 'src/boot/services/permissionsService'
+import { Permisos, PermisosFilter } from 'src/interfaces'
 import { onMounted, reactive, ref } from 'vue'
 
 const filtro = reactive<PermisosFilter>({ perPage: 10, page: 1 })

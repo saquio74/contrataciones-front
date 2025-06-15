@@ -77,7 +77,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { Validation, Registro } from '../../interfaces/index'
-import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import { useUserStore } from 'src/stores/usersStore/userStore'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

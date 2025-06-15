@@ -81,7 +81,6 @@
             class="my-sticky-column-table"
             :rows="agentes"
             :columns="columns"
-            :dense="$q.screen.lt.md"
             :pagination="{ rowsPerPage: 10, page: currentPage, rowsNumber: total }"
             @request="(data) => updatePagination(data.pagination)"
         >
@@ -169,18 +168,19 @@
     </q-page>
 </template>
 <script setup lang="ts">
-import { useAgenteStore } from 'src/stores/agentesStore/agenteStore.ts'
+import { useAgenteStore } from 'src/stores/agentesStore/agenteStore'
 import { storeToRefs } from 'pinia'
 import { onMounted, reactive, ref } from 'vue'
-import { Agente, AgentesFilter } from 'src/interfaces.ts'
+import { Agente, AgentesFilter } from 'src/interfaces'
 import { date, Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears, QTable, QTd, QTh, QTr } from 'quasar'
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoAgente from './partials/NuevoAgente.vue'
-import agenteService from 'src/boot/services/agenteService.ts'
-import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import agenteService from 'src/boot/services/agenteService'
+import { useUserStore } from 'src/stores/usersStore/userStore'
 const columns = [
     { name: 'Legajo', label: 'Legajo', field: 'legajo' },
     { name: 'dni', field: 'dni', label: 'DNI' },
+    { name: 'codigo', field: 'codigo', label: 'Código' },
     { name: 'nombre', field: 'nombre', label: 'Nombre' },
     { name: 'horario', field: 'horario', label: 'Horario' },
     {

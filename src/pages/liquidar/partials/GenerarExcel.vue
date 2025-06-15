@@ -32,8 +32,8 @@
     </div>
 </template>
 <script lang="ts" setup>
-import agenfacService from 'src/boot/services/agenfacService.ts'
-import { AgenfacFilter } from 'src/interfaces.ts'
+import agenfacService from 'src/boot/services/agenfacService'
+import { AgenfacFilter } from 'src/interfaces'
 import { ref } from 'vue'
 import BuscarInfoLiquidacion from './BuscarInfoLiquidacion.vue'
 
@@ -50,6 +50,7 @@ const buscarLiquidacion = async () => {
         const url = window.URL.createObjectURL(blob)
         window.location.assign(url)
     } catch (error) {
+        console.log(error)
     } finally {
         loading.value = false
     }

@@ -113,11 +113,11 @@
 </template>
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { Sector, SectorFilter } from 'src/interfaces.ts'
+import { Sector, SectorFilter } from 'src/interfaces'
 import { Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears, QTable, QTd, QTh, QTr } from 'quasar'
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoSector from './partials/NuevoSector.vue'
-import sectorService from 'src/boot/services/sectorService.ts'
+import sectorService from 'src/boot/services/sectorService'
 
 const columns = [{ name: 'Sector', label: 'Sector', field: 'sector' }]
 

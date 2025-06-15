@@ -95,10 +95,10 @@
 <script lang="ts" setup>
 import BaseModal from 'src/components/BaseModal.vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
-import userService from 'src/boot/services/userService.ts'
-import { User, UserFilter } from 'src/interfaces.ts'
+import userService from 'src/boot/services/userService'
+import { User, UserFilter } from 'src/interfaces'
 import { onMounted, reactive, ref } from 'vue'
-import { SelecOption } from 'src/interfaces/filters/baseFilter.ts'
+import { SelecOption } from 'src/interfaces/filters/baseFilter'
 
 const filtro = reactive<UserFilter>({
     perPage: 10,

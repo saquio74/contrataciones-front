@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { Agente, AgentesFilter } from 'src/interfaces.ts'
-// import type { User, Login } from 'src/interfaces/index.ts'
+import { Agente, AgentesFilter } from 'src/interfaces'
+// import type { User, Login } from 'src/interfaces/index'
 import { ref, computed, type ComputedRef } from 'vue'
 import AgenteService from 'src/boot/services/agenteService'
 

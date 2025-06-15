@@ -81,7 +81,7 @@
 import { reactive, ref } from 'vue'
 import type { Validation, ChangePassword } from '../../interfaces/index'
 import { useRouter } from 'vue-router'
-import userService from 'src/boot/services/userService.ts'
+import userService from 'src/boot/services/userService'
 import { Notify } from 'quasar'
 
 const router = useRouter()

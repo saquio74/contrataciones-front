@@ -1,4 +1,4 @@
-import { BasePagination, Complementaria, ComplementariaFilter } from 'src/interfaces.ts'
+import { BasePagination, Complementaria, ComplementariaFilter } from 'src/interfaces'
 import baseController from '../baseController'
 
 class ComplementariaService extends baseController<

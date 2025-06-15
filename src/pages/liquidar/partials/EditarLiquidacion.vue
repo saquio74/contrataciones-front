@@ -136,10 +136,10 @@
     </div>
 </template>
 <script lang="ts" setup>
-import agenfacService from 'src/boot/services/agenfacService.ts'
+import agenfacService from 'src/boot/services/agenfacService'
 import BuscarInfoLiquidacion from './BuscarInfoLiquidacion.vue'
 import EditarHoras from './EditarHoras.vue'
-import { Agenfac, AgenfacFilter } from 'src/interfaces.ts'
+import { Agenfac, AgenfacFilter } from 'src/interfaces'
 import BaseModal from 'src/components/BaseModal.vue'
 import { ref } from 'vue'
 

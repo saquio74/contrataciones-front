@@ -49,7 +49,7 @@
             />
             <LiquidarHoras
                 :ageninc="ageninc"
-                :hospital-id="(agente.hospital_id as number)"
+                :hospital-id="agente.hospital_id as number"
                 :color="index === 0 ? 'bg-indigo' : 'bg-blue'"
                 @liquidar="(data) => liquidarComplementaria(data)"
             />
@@ -69,10 +69,10 @@
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import LiquidarHoras from 'src/pages/liquidar/partials/LiquidarHoras.vue'
 import BuscarInfoLiquidacion from 'src/pages/liquidar/partials/BuscarInfoLiquidacion.vue'
-import type { Agenfac, AgenfacFilter, Agente, SelecOption, Complementaria } from 'src/interfaces.ts'
+import type { Agenfac, AgenfacFilter, Agente, SelecOption, Complementaria } from 'src/interfaces'
 import ComplementariaService from 'src/boot/services/complementariaService'
 import { ref } from 'vue'
-import { days, months } from 'src/models/baseArrays.ts'
+import { days, months } from 'src/models/baseArrays'
 const agente = ref<Agente>({})
 const fechaComple = ref<string>(new Date().toISOString().split('T')[0])
 

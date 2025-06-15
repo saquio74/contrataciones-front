@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import { useUserStore } from 'src/stores/usersStore/userStore'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 

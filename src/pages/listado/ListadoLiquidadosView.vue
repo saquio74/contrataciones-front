@@ -89,9 +89,9 @@
     </q-page>
 </template>
 <script lang="ts" setup>
-import agenteService from 'src/boot/services/agenteService.ts'
+import agenteService from 'src/boot/services/agenteService'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
-import { SelecOption, Agente, Agenfac } from 'src/interfaces.ts'
+import { SelecOption, Agente, Agenfac } from 'src/interfaces'
 import { ref } from 'vue'
 import { QPage, QTabs, QTab, QSpace, QSeparator } from 'quasar'
 const hospitalId = ref<number | undefined>(undefined)

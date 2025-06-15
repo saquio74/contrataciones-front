@@ -68,11 +68,11 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { AgenfacFilter, Complementaria, ComplementariaFilter } from 'src/interfaces.ts'
+import { AgenfacFilter, Complementaria, ComplementariaFilter } from 'src/interfaces'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import BuscarInfoLiquidacion from 'src/pages/liquidar/partials/BuscarInfoLiquidacion.vue'
 import { ref } from 'vue'
-import complementariaService from 'src/boot/services/complementariaService.ts'
+import complementariaService from 'src/boot/services/complementariaService'
 
 const complementarias = ref<Complementaria[]>([])
 const loading = ref<boolean>(false)

@@ -35,8 +35,8 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
-import baseController from 'src/boot/baseController.ts'
-import type { BasePagination, SelecOption } from 'src/interfaces.ts'
+import baseController from 'src/boot/baseController'
+import type { BasePagination, SelecOption } from 'src/interfaces'
 const props = defineProps({
     opcion: {
         type: String,

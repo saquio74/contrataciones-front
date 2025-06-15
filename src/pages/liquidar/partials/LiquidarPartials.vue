@@ -62,13 +62,14 @@
                     v-for="ageninc in agente.ageninc"
                     :key="ageninc.id"
                     :ageninc="ageninc"
-                    :hospital-id="(agente.hospital_id as number)"
+                    :hospital-id="agente.hospital_id as number"
                     :color="
                         agente.liquidacion_actual?.filter((liq: Agenfac) => liq.inc == ageninc.inciso_id).length === 0
                             ? 'bg-negative'
-                            : agente.liquidacion_actual?.filter((liq: Agenfac) => liq.inc == ageninc.inciso_id).length === 1
-                                ? 'bg-positive'
-                                : 'bg-warning'
+                            : agente.liquidacion_actual?.filter((liq: Agenfac) => liq.inc == ageninc.inciso_id)
+                                    .length === 1
+                              ? 'bg-positive'
+                              : 'bg-warning'
                     "
                     @liquidar="agregarLiquidacion"
                 />
@@ -90,10 +91,10 @@
     </q-page>
 </template>
 <script lang="ts" setup>
-import agenteService from 'src/boot/services/agenteService.ts'
-import agenfacService from 'src/boot/services/agenfacService.ts'
+import agenteService from 'src/boot/services/agenteService'
+import agenfacService from 'src/boot/services/agenfacService'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
-import { SelecOption, Agente, Agenfac } from 'src/interfaces.ts'
+import { SelecOption, Agente, Agenfac } from 'src/interfaces'
 import LiquidarHorasVue from './LiquidarHoras.vue'
 import { computed, ref } from 'vue'
 import { Notify, QPage, QTabs, QTab, QSpace, QSeparator, QBtn } from 'quasar'

@@ -116,12 +116,12 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { onMounted, reactive, ref } from 'vue'
-import { Profesional, ProfesionalFilter } from 'src/interfaces.ts'
+import { Profesional, ProfesionalFilter } from 'src/interfaces'
 import { date, Notify, QBtn, QIcon, QInnerLoading, QInput, QPage, QSpinnerGears, QTable, QTd, QTh, QTr } from 'quasar'
 import BaseModal from 'src/components/BaseModal.vue'
 import NuevoProfesional from './partials/NuevoProfesional.vue'
-import profesionalService from 'src/boot/services/profesionalesService.ts'
-import { useUserStore } from 'src/stores/usersStore/userStore.ts'
+import profesionalService from 'src/boot/services/profesionalesService'
+import { useUserStore } from 'src/stores/usersStore/userStore'
 const columns = [
     { name: 'proveedor', field: 'proveedor', label: 'Proveedor' },
     { name: 'dni', field: 'dni', label: 'DNI' },

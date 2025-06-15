@@ -1,4 +1,4 @@
-import { BasePagination, Hospital, HospitalFilter } from 'src/interfaces.ts'
+import { BasePagination, Hospital, HospitalFilter } from 'src/interfaces'
 import baseController from '../baseController'
 
 class hospitalService extends baseController<Hospital, Hospital, HospitalFilter, BasePagination<Hospital>> {}

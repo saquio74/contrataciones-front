@@ -8,10 +8,10 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-const { configure } = require('quasar/wrappers')
-const path = require('path')
+const { configure } = await import('quasar/wrappers')
+import path from 'path'
 
-module.exports = configure(function (/* ctx */) {
+export default configure(function (/* ctx */) {
     return {
         eslint: {
             // fix: true,
@@ -49,13 +49,8 @@ module.exports = configure(function (/* ctx */) {
 
         // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
         build: {
-            target: {
-                browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
-                node: 'node16'
-            },
-            alias: {
-                '@': path.join(__dirname, './src')
-            },
+            target: { browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'], node: 'node16' },
+            alias: { '@': path.join(__dirname, './src') },
 
             vueRouterMode: 'hash', // available values: 'hash', 'history'
             // vueRouterBase,
@@ -166,9 +161,7 @@ module.exports = configure(function (/* ctx */) {
         },
 
         // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
-        capacitor: {
-            hideSplashscreen: true
-        },
+        capacitor: { hideSplashscreen: true },
 
         // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
         electron: {
