@@ -19,6 +19,7 @@ class Api {
             baseURL: `${process.env.BASE_URL_API}api/${slug}`,
             timeout: 60000
         })
+        window.console.log(`${process.env.BASE_URL_API}api/${slug}`)
         this.instanceToken()
     }
     public instanceToken(): void {
