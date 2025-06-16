@@ -77,7 +77,7 @@ export default configure(function (/* ctx */) {
             // ]
             env: {
                 // BASE_URL_API: 'https://contrataciones-api-laravel-9-production.up.railway.app/api'
-                BASE_URL_API: 'http:/api.localhost/api'
+                BASE_URL_API: 'http:/api.localhost/'
             }
         },
 

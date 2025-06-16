@@ -16,7 +16,7 @@ class Api {
     public api: AxiosInstance
     constructor(slug: string) {
         this.api = axios.create({
-            baseURL: `${process.env.BASE_URL_API}/${slug}`,
+            baseURL: `${process.env.BASE_URL_API}api/${slug}`,
             timeout: 60000
         })
         this.instanceToken()
@@ -30,9 +30,9 @@ class Api {
             (error) => {
                 console.log()
                 const errorResponse =
-                    error.response?.data?.message ?? error.response?.data.length
+                    (error.response?.data?.message ?? error.response?.data.length)
                         ? error.response?.data[0]
-                        : null ?? error.response?.data ?? error.request ?? error.message ?? error
+                        : (error.response?.data ?? error.request ?? error.message ?? error)
                 Notify.create(
                     typeof errorResponse === 'string' && errorResponse.length > 0 ? errorResponse : 'Ocurrio un error'
                 )
