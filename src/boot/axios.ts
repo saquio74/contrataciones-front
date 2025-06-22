@@ -16,10 +16,9 @@ class Api {
     public api: AxiosInstance
     constructor(slug: string) {
         this.api = axios.create({
-            baseURL: `http://api.localhost/api/${slug}`,
+            baseURL: `http://127.0.0.1:8000/api/${slug}`,
             timeout: 60000
         })
-        window.console.log(`http://api.localhost/api/${slug}`)
         this.instanceToken()
     }
     public instanceToken(): void {

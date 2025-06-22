@@ -78,11 +78,7 @@
                     :multiple="true"
                     :use-chips="true"
                     :hide-selected="false"
-                    :pre-load="
-                        currentRol?.permissionsrole?.map((pr) => {
-                            return { value: pr.permissions?.id, label: pr.permissions?.name }
-                        })
-                    "
+                    :pre-load="premount"
                     @selected="seleccionarRol"
                 />
                 <div
@@ -117,7 +113,7 @@ import BaseModal from 'src/components/BaseModal.vue'
 import BaseSelectReq from 'src/components/BaseSelectReq.vue'
 import rolesService from 'src/boot/services/rolesService'
 import { Roles, RolesFilter, SelecOption, User } from 'src/interfaces'
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 
 const dialog = ref<boolean>(false)
 const filtro = reactive<RolesFilter>({ perPage: 10, page: 1 })
@@ -133,6 +129,14 @@ const columns = [
     { name: 'nombre', field: 'name', label: 'Nombre' },
     { name: 'descripcion', field: 'description', label: 'Descripcion' }
 ]
+
+const premount = computed(() => {
+    console.log(currentRol.value?.permissionsrole)
+    return currentRol.value?.permissionsrole?.map((pr) => {
+        return { value: pr.permissions?.id, label: pr.permissions?.name }
+    })
+})
+
 onMounted(async () => {
     await getRoles()
 })
@@ -174,14 +178,21 @@ const updateRol = (rol: Roles) => {
 }
 const seleccionarRol = (data: SelecOption<number>[]) => {
     currentRol.value.permissionsrole = data.map((data) => {
-        return { roles_id: currentRol.value?.id ?? 0, permmissions_id: data.value }
+        return {
+            roles_id: currentRol.value?.id ?? 0,
+            permmissions_id: data.value,
+            permissions: {
+                id: data.value,
+                name: data.label,
+                slug: data.label
+            }
+        }
     })
 }
 
 const guardarRol = async () => {
     try {
         loading.value = true
-        // currentRol.value.permissionsrole = permissions
         await rolesService.basePut(currentRol.value)
     } catch (error) {
     } finally {
@@ -195,7 +206,6 @@ const quitRol = (user: User) => {
     user.role_id = 0
     rolesService.updateRolUser(user)
     const index = currentRol.value?.user.findIndex((data) => data.id === user.id)
-    console.log(index)
     if (index !== null && index !== undefined) currentRol.value?.user.splice(index, 1)
 }
 </script>
